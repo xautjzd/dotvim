@@ -23,16 +23,48 @@ set history=1000
 set number
 
 set autoindent
-set tabstop=4      "设置Tab键宽度
-set shiftwidth=4   "换行时行间交错使用4个空格
+set smartindent   
+set autoread       "reload files when changed
 
-set backspace=2    "设置退格键
-set cindent shiftwidth=4  "自动缩进4空格
-set smartindent    "智能自动缩进
+" set ruler
+" set expandtab
+set tabstop=2      "set tab width
+set shiftwidth=2   "set width of nested tabs
 
+" set code folding method
+set foldmethod=syntax
+
+" set backspace=2    "设置退格键
+set cindent shiftwidth=2  "自动缩进4空格
+
+"Automatically append closing characters
+inoremap ( ()<Esc>i
+inoremap ' ''<Esc>i
+inoremap " ""<Esc>i
+
+"To save, press ctrl-s.
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>a
+
+set showcmd
+
+" set vim default display encode
 set encoding=utf-8
+"set file encoding when save or new file
 set fileencoding=utf-8
-set guifont=*
+"file encode list,when vim read file,it will detect according to this config
+set fileencodings=utf-8,gbk,gb2312
+" set guifont=*
+
+"set vim statusbar theme
+let g:airline_theme="molokai"
+" let g:airline_left_sep = ''
+" let g:airline_left_alt_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
+" let g:airline#extensions#branch#symbol = ' '
+" let g:airline#extensions#readonly#symbol = ''
+" let g:airline_linecolumn_prefix = ' '
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim GUI
@@ -49,9 +81,10 @@ set laststatus=2  "Always show the status line
 set noshowmode
 set t_Co=256
 
+let g:airline_powerline_fonts=1
+
 "Set the colortheme of vim
 colorscheme molokai
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
@@ -63,7 +96,6 @@ set autochdir
 
 "Set tagbar window width
 let g:tagbar_width=20
-
 
 "Set YouCompleteMe trigger key 
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
@@ -97,12 +129,13 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'tpope/vim-rails.git'
 
 "vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
 
 "snippets
 Bundle 'SirVer/ultisnips'
 "Bundle 'vim-scripts/snipMate'
+" Bundle 'm2ym/rsense'
 
 "Syntax highlight
 Bundle 'cucumber.zip'
@@ -131,5 +164,4 @@ Bundle "http://github.com/gmarik/vim-visual-star-search.git"
 
 
 "Enable filetype plugins
-filetype plugin on     "enable loading the plugin files for specific file types
-filetype indent on     "enable loading the indent file for specific file types(针对不同文件类型缩进)
+filetype indent plugin on     "enable loading the plugin files for specific file types
