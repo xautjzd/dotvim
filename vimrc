@@ -13,6 +13,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Disable up、down
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
 set nocompatible               "disable vi compatibility
 filetype off                   "required!
 
@@ -29,7 +35,7 @@ set autoread       "reload files when changed
 " set ruler
 " set expandtab
 set tabstop=2      "set tab width
-set shiftwidth=2   "set width of nested tabs
+set shiftwidth=2   "set width of nested tabs(set indent width)
 
 " set code folding method
 set foldmethod=syntax

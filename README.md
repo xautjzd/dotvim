@@ -16,10 +16,9 @@ If you want to use my vim configuration, just need to do:
 use git to clone my .vimrc file to your home directory(~)
 
   ```
-  $ git clone https://github.com/xautjzd/dotvim.git ~/dotvim
-  $ mv ~/dotvim ~/.vim    #rename dotvim to .vim directory
-  $ mv ~/.vim/vimrc ~    #move vimrc to home directory
-  $ mv vimrc .vimrc        #rename vimrc to .vimrc
+  $ git clone https://github.com/xautjzd/dotvim.git ~/.vim
+  $ ln -s ~/.vim/vimrc ~/.vimrc
+	$ ln -s ~/.vim/gvimrc ~/.gvimrc
   ```
 
 ###3. ContactMe
