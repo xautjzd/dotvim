@@ -49,7 +49,7 @@ Bundle 'Markdown'
 
 "Utility
 Bundle 'majutsushi/tagbar'
-"迄今为止最好的VIM自动补全插件
+"auto complete plugin
 Bundle 'Valloric/YouCompleteMe'
 "Bundle 'SuperTab'
 Bundle 'repeat.vim'
