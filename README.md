@@ -25,7 +25,41 @@ use git to clone my .vimrc file to your home directory(~)
 
 use `vim ~/.vimrc` to open vimrc file,and type `:BundleInstall` to install vim plugins configured in vimrc.
 
-###4. ContactMe
+After installed all plugins,you have to compile YouCompleteMe plugin.The method is as follows:
+
+**Debian**
+
+	```
+	#install development tools and cmake
+	$sudo apt-get install build-essential cmake
+	#install python development tools
+	$sudo apt-get install python-dev
+	#compiling YCM with semantic support for C-family languages
+	$cd ~/.vim/bundle/YouCompleteMe
+	$./install.sh
+	```
+
+**Red Hat**
+
+	```
+	#install development tools and cmake
+	$sudo yum groupinstall "Development Tools"
+	$sudo yum install cmake
+	#install python development tools
+	$sudo apt-get install python-devel
+	#compiling YCM with semantic support for C-family languages
+	$cd ~/.vim/bundle/YouCompleteMe
+	$./install.sh
+	```
+
+###4. Install patched fonts
+
+	Open vim,you will find the statusbar is messy,so you have to install fonts to see awesome effect of air-line plugin
+	Please refer:
+	1. https://powerline.readthedocs.org/en/latest/installation/linux.html#font-installation
+	2. https://github.com/Lokaltog/powerline-fonts
+
+###5. ContactMe
 
   If you have some problems,just contact me.I will try my best to help you.
   - Twitter:xautjzd
