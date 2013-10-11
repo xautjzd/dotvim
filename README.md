@@ -21,7 +21,11 @@ use git to clone my .vimrc file to your home directory(~)
 	$ ln -s ~/.vim/gvimrc ~/.gvimrc
   ```
 
-###3. ContactMe
+###3. Install vim plugins
+
+use `vim ~/.vimrc` to open vimrc file,and type `:BundleInstall` to install vim plugins configured in vimrc.
+
+###4. ContactMe
 
   If you have some problems,just contact me.I will try my best to help you.
   - Twitter:xautjzd
