@@ -10,6 +10,69 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vim Plugins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set nocompatible               "disable vi compatibility
+filetype off                   "required!
+
+set rtp+=~/.vim/bundle/vundle/  "set runtimepath
+call vundle#rc()
+
+" let Vundle manage Vundle  
+Bundle 'gmarik/vundle'
+
+"File Tree plugin NERDTree
+Bundle 'scrooloose/nerdtree'
+
+"File switch from on to another
+Bundle 'kien/ctrlp.vim'
+
+"My Bundles here
+Bundle 'tpope/vim-fugitive'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'tpope/vim-rails.git'
+
+"vim-scripts repos
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
+
+"snippets
+Bundle 'SirVer/ultisnips'
+"Bundle 'vim-scripts/snipMate'
+" Bundle 'm2ym/rsense'
+
+"Syntax highlight
+Bundle 'cucumber.zip'
+Bundle 'Markdown'
+
+"Utility
+Bundle 'majutsushi/tagbar'
+"迄今为止最好的VIM自动补全插件
+Bundle 'Valloric/YouCompleteMe'
+"Bundle 'SuperTab'
+Bundle 'repeat.vim'
+Bundle 'surround.vim'
+Bundle 'file-line'
+
+"code comment and decomment
+Bundle 'tomtom/tcomment_vim'
+
+"ColorScheme
+Bundle 'tomasr/molokai'
+
+"Airline
+Bundle 'bling/vim-airline'
+
+"Navigation
+Bundle "http://github.com/gmarik/vim-visual-star-search.git"
+
+
+"Enable filetype plugins
+filetype indent plugin on     "enable loading the plugin files for specific file types
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -19,8 +82,6 @@ map <down> <nop>
 map <left> <nop>
 map <right> <nop>
 
-set nocompatible               "disable vi compatibility
-filetype off                   "required!
 
 "Set how many lines of history Vim has to remember
 set history=1000
@@ -113,61 +174,3 @@ nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :TagbarToggle<CR>
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim Plugins
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/vundle/  "set runtimepath
-call vundle#rc()
-
-" let Vundle manage Vundle  
-Bundle 'gmarik/vundle'
-
-"File Tree plugin NERDTree
-Bundle 'scrooloose/nerdtree'
-
-"File switch from on to another
-Bundle 'kien/ctrlp.vim'
-
-"My Bundles here
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-
-"vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-
-"snippets
-Bundle 'SirVer/ultisnips'
-"Bundle 'vim-scripts/snipMate'
-" Bundle 'm2ym/rsense'
-
-"Syntax highlight
-Bundle 'cucumber.zip'
-Bundle 'Markdown'
-
-"Utility
-Bundle 'majutsushi/tagbar'
-"迄今为止最好的VIM自动补全插件
-Bundle 'Valloric/YouCompleteMe'
-"Bundle 'SuperTab'
-Bundle 'repeat.vim'
-Bundle 'surround.vim'
-Bundle 'file-line'
-
-"code comment and decomment
-Bundle 'tomtom/tcomment_vim'
-
-"ColorScheme
-Bundle 'tomasr/molokai'
-
-"Airline
-Bundle 'bling/vim-airline'
-
-"Navigation
-Bundle "http://github.com/gmarik/vim-visual-star-search.git"
-
-
-"Enable filetype plugins
-filetype indent plugin on     "enable loading the plugin files for specific file types
