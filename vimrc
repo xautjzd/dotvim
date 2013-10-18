@@ -50,7 +50,8 @@ Bundle 'Markdown'
 "Utility
 Bundle 'majutsushi/tagbar'
 "auto complete plugin
-Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Valloric/YouCompleteMe'
+Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'SuperTab'
 Bundle 'repeat.vim'
 Bundle 'surround.vim'
@@ -122,6 +123,9 @@ set fileencoding=utf-8
 "file encode list,when vim read file,it will detect according to this config
 set fileencodings=utf-8,gbk,gb2312
 " set guifont=*
+
+"Enable NeoComplCache
+let g:neocomplcache_enable_at_startup = 1
 
 "set vim statusbar theme
 let g:airline_theme="molokai"
