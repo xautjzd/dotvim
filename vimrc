@@ -43,10 +43,6 @@ Bundle 'SirVer/ultisnips'
 "Bundle 'vim-scripts/snipMate'
 " Bundle 'm2ym/rsense'
 
-"Syntax highlight
-Bundle 'cucumber.zip'
-Bundle 'Markdown'
-
 "Utility
 Bundle 'majutsushi/tagbar'
 "auto complete plugin
@@ -65,10 +61,6 @@ Bundle 'tomasr/molokai'
 
 "Airline
 Bundle 'bling/vim-airline'
-
-"Navigation
-Bundle "http://github.com/gmarik/vim-visual-star-search.git"
-
 
 "Enable filetype plugins
 filetype indent plugin on     "enable loading the plugin files for specific file types
