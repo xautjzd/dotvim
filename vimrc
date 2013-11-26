@@ -1,14 +1,14 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " My vimrc is based on the the vimrc of Amix:
 " 	http://amix.dk/vim/vimrc.html
-" I really like his style,but I also add my own features
+" I really appreciate his configurattion, but I also add my own features
 " such as vundle,ctrlp,ultisnips,etc.
 "
-"Author:xautjzd
-"Homepage:http://xautjzd.github.com
-"Email:xautjzd@gmail.com
+" Author: xautjzd
+" Homepage: http://xautjzd.github.com
+" Email: xautjzd@gmail.com
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Plugins
@@ -19,7 +19,7 @@ filetype off                   "required!
 set rtp+=~/.vim/bundle/vundle/  "set runtimepath
 call vundle#rc()
 
-" let Vundle manage Vundle  
+" Let Vundle manage Vundle  
 Bundle 'gmarik/vundle'
 
 "File Tree plugin NERDTree
@@ -28,55 +28,68 @@ Bundle 'scrooloose/nerdtree'
 "File switch from on to another
 Bundle 'kien/ctrlp.vim'
 
-"My Bundles here
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'tpope/vim-rails.git'
-
-"vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-
 "snippets
 Bundle 'SirVer/ultisnips'
 "Bundle 'vim-scripts/snipMate'
-" Bundle 'm2ym/rsense'
 
-"Utility
-Bundle 'majutsushi/tagbar'
-"auto complete plugin
-" Bundle 'Valloric/YouCompleteMe'
-Bundle 'Shougo/neocomplcache.vim'
+" Auto complete plugin
+Bundle 'Valloric/YouCompleteMe'
+" Bundle 'Shougo/neocomplcache.vim'
 "Bundle 'SuperTab'
-Bundle 'repeat.vim'
-Bundle 'surround.vim'
-Bundle 'file-line'
 
-"code comment and decomment
+" Code comment and decomment
 Bundle 'tomtom/tcomment_vim'
 
-"ColorScheme
+Bundle 'majutsushi/tagbar'
+
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-fugitive'
+
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+" ColorScheme
 Bundle 'tomasr/molokai'
 
 "Airline
 Bundle 'bling/vim-airline'
 
-"Enable filetype plugins
-filetype indent plugin on     "enable loading the plugin files for specific file types
+"vim-scripts repos
+" Bundle 'L9'
+" Bundle 'FuzzyFinder'
 
+" Utility
+Bundle 'repeat.vim'
+Bundle 'surround.vim'
+Bundle 'file-line'
+
+"Enable filetype plugins
+filetype indent plugin on     " Enable loading the plugin files for specific file types
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Disable up、down
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
+"Disable up、down、left、right
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
 
+" Edit my vimrc file through <leader>ev default leader is \
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+" Take the contents of given file and execute it in Vimscript, default $MYVIMRC is ~/.vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
-"Set how many lines of history Vim has to remember
+" Type <leader>" vim will surround the word in double quotes
+nnoremap <leader>" bi"<esc>lwa"<esc>l
+
+" Disable escape key in insert mode, <nop>(no operation)
+inoremap jk <esc>
+
+" Ctrl+d delete the current line in insert mode
+inoremap <c-d> <esc>ddi
+
+" Set how many lines of history Vim has to remember
 set history=1000
 
 "Display the line number
@@ -84,31 +97,39 @@ set number
 
 set autoindent
 set smartindent   
-set autoread       "reload files when changed
+set autoread       " Reload files when changed
 
 " set ruler
 " set expandtab
-set tabstop=2      "set tab width
-set shiftwidth=2   "set width of nested tabs(set indent width)
+set tabstop=4      " Set number of spaces that a <Tab> in the file counts for
+set cindent
+set shiftwidth=4   " Set width of nested tabs,control  how many columns text is indented with the reindent operations(<<)
 
-" set code folding method
+" autocmd: specify commands to be executed automatically when reading or
+" writing a file, when entering or leaving a buffer or window
+" More information, please refer to:
+" http://learnvimscriptthehardway.stevelosh.com/chapters/12.html
+autocmd BufRead,BufNewFile *.rb set shiftwidth=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
+autocmd BufRead,BufNewFile *.rb set tabstop=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
+autocmd BufWritePre * :normal gg=G
+
+" Set code folding method
 set foldmethod=syntax
-
-" set backspace=2    "设置退格键
-set cindent shiftwidth=2  "自动缩进4空格
 
 "Automatically append closing characters
 inoremap ( ()<Esc>i
 inoremap ' ''<Esc>i
 inoremap " ""<Esc>i
 
-"To save, press ctrl-s.
+" To save, press <c-s>
 nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>a
+imap <c-s> <ESC>:w<CR>a
 
+" When setting showcmd, the bottom line will show you information about the
+" current command going on
 set showcmd
 
-" set vim default display encode
+" Set vim default display encode
 set encoding=utf-8
 "set file encoding when save or new file
 set fileencoding=utf-8
@@ -116,35 +137,19 @@ set fileencoding=utf-8
 set fileencodings=utf-8,gbk,gb2312
 " set guifont=*
 
-"Enable NeoComplCache
-let g:neocomplcache_enable_at_startup = 1
-
-"set vim statusbar theme
-let g:airline_theme="molokai"
-" let g:airline_left_sep = ''
-" let g:airline_left_alt_sep = ''
-" let g:airline_right_sep = ''
-" let g:airline_right_alt_sep = ''
-" let g:airline#extensions#branch#symbol = ' '
-" let g:airline#extensions#readonly#symbol = ''
-" let g:airline_linecolumn_prefix = ' '
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim GUI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"Highlight the current line
+" Highlight the current line
 set cursorline
 
 "Highlight the search result and incremental search
 set hlsearch
 set incsearch
 
-"Status line config
+" Status line config
 set laststatus=2  "Always show the status line
-set noshowmode
 set t_Co=256
-
-let g:airline_powerline_fonts=1
 
 "Set the colortheme of vim
 colorscheme molokai
@@ -152,21 +157,37 @@ colorscheme molokai
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTree
+let NERDTreeWinSize=20
+
+" CtrlP
+let g:ctrlp_working_path_mode='ra' " c: the directory of the current file; r: the nearest ancestor that contains one of these directories or files:.git .hg .svn .bzr
+
+" TagList
 let Tlist_Inc_Winwidth=0
 let Tlist_Process_File_Always=1
 let Tlist_File_Fold_Auto_Close=1
 set autochdir
 
-"Set tagbar window width
-let g:tagbar_width=20
+" TagBar
+let g:tagbar_width=20   " Set tagbar window width
 
-"Set YouCompleteMe trigger key 
+" Vim-airline
+" More airline-customization please refer to vim-airline doc:
+" https://github.com/bling/vim-airline
+let g:airline_powerline_fonts=1 " Let airline plugin use the arrow effect of powerline
+let g:airline_detect_whitespace=0 " *trailing[164] is part of the whitespace extension, disable it  
+"set vim statusbar theme
+let g:airline_theme="molokai"
+
+" YouComepleteMe
+" Set YouCompleteMe trigger key 
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
+" Enable NeoComplCache
+" let g:neocomplcache_enable_at_startup=1
 
-"Set shorcut key
+" Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :TagbarToggle<CR>
-
-
