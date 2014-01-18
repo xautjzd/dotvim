@@ -42,7 +42,10 @@ Bundle 'tomtom/tcomment_vim'
 
 Bundle 'majutsushi/tagbar'
 
-Bundle 'tpope/vim-rails.git'
+" Static syntax checking
+Bundle 'scrooloose/syntastic'
+
+Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'Lokaltog/vim-easymotion'
@@ -54,14 +57,13 @@ Bundle 'tomasr/molokai'
 "Airline
 Bundle 'bling/vim-airline'
 
-"vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-
 " Utility
-Bundle 'repeat.vim'
-Bundle 'surround.vim'
-Bundle 'file-line'
+" Bundle 'repeat.vim'
+Bundle 'tpope/vim-surround'
+
+Bundle 'junegunn/goyo.vim'
+
+Bundle 'plasticboy/vim-markdown'
 
 "Enable filetype plugins
 filetype indent plugin on     " Enable loading the plugin files for specific file types
@@ -81,7 +83,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " Type <leader>" vim will surround the word in double quotes
-nnoremap <leader>" bi"<esc>lwa"<esc>l
+" nnoremap <leader>" bi"<esc>lwa"<esc>l
 
 " Disable escape key in insert mode, <nop>(no operation)
 inoremap jk <esc>
@@ -111,15 +113,15 @@ set shiftwidth=4   " Set width of nested tabs,control  how many columns text is 
 " http://learnvimscriptthehardway.stevelosh.com/chapters/12.html
 autocmd BufRead,BufNewFile *.rb set shiftwidth=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
 autocmd BufRead,BufNewFile *.rb set tabstop=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
-autocmd BufWritePre * :normal gg=G
+" autocmd BufWritePre * :normal gg=G
 
 " Set code folding method
 set foldmethod=syntax
 
 "Automatically append closing characters
-inoremap ( ()<Esc>i
-inoremap ' ''<Esc>i
-inoremap " ""<Esc>i
+" inoremap ( ()<Esc>i
+" inoremap ' ''<Esc>i
+" inoremap " ""<Esc>i
 
 " To save, press <c-s>
 nmap <c-s> :w<CR>
@@ -157,11 +159,23 @@ colorscheme molokai
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" UltiSnips
+autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
+
 " NERDTree
 let NERDTreeWinSize=20
 
 " CtrlP
 let g:ctrlp_working_path_mode='ra' " c: the directory of the current file; r: the nearest ancestor that contains one of these directories or files:.git .hg .svn .bzr
+
+" Exclude files and directorys
+" unlet g:ctrlp_custom_ignore
+let g:ctrlp_custom_ignore = {
+			\ 'dir': '\v[\/](\.git|\.hg|\.svn)$',
+			\ 'file': '\v\.(so|swap|tar|zip|jar|jpg|png|pdf|doc|docx|gz|bz2|rpm|deb)$',
+			\}
+
 
 " TagList
 let Tlist_Inc_Winwidth=0
@@ -188,6 +202,27 @@ let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 " Enable NeoComplCache
 " let g:neocomplcache_enable_at_startup=1
 
+" Syntastic plugin
+" check header files for C
+let g:Syntastic_c_check_header = 1
+let syntastic_mode_map = { 'passive_filetypes': ['html'] } " don't check html
+
+" Goyo
+function! g:goyo_before()
+	silent !tmux set status off
+endfunction
+
+function! g:goyo_after()
+	silent !tmux set status on
+endfunction
+
+let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
+noremap <leader>g :Goyo<CR>
+
+" Vim-markdown
+let g:vim_markdown_folding_disabled=1
+
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :TagbarToggle<CR>
+autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>  " ruby syntax gets checked on pressing <F9> key
