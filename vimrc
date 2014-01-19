@@ -77,6 +77,8 @@ nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
 
+let mapleader=','
+
 " Edit my vimrc file through <leader>ev default leader is \
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 " Take the contents of given file and execute it in Vimscript, default $MYVIMRC is ~/.vimrc
@@ -85,8 +87,20 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " Type <leader>" vim will surround the word in double quotes
 " nnoremap <leader>" bi"<esc>lwa"<esc>l
 
+"Automatically append closing characters
+" inoremap ( ()<Esc>i
+" inoremap ' ''<Esc>i
+" inoremap " ""<Esc>i
+
+" To save, press <c-s>
+nmap <c-s> :w<CR>
+imap <c-s> <ESC>:w<CR>a
+
 " Disable escape key in insert mode, <nop>(no operation)
 inoremap jk <esc>
+
+nnoremap <leader>q :q<cr>
+inoremap <leader>w <esc>:w<cr>
 
 " Ctrl+d delete the current line in insert mode
 inoremap <c-d> <esc>ddi
@@ -118,14 +132,6 @@ autocmd BufRead,BufNewFile *.rb set tabstop=2  " If edit *.rb file,shiftwidth is
 " Set code folding method
 set foldmethod=syntax
 
-"Automatically append closing characters
-" inoremap ( ()<Esc>i
-" inoremap ' ''<Esc>i
-" inoremap " ""<Esc>i
-
-" To save, press <c-s>
-nmap <c-s> :w<CR>
-imap <c-s> <ESC>:w<CR>a
 
 " When setting showcmd, the bottom line will show you information about the
 " current command going on
