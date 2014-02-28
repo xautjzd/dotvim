@@ -93,14 +93,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " inoremap " ""<Esc>i
 
 " To save, press <c-s>
-nmap <c-s> :w<CR>
 imap <c-s> <ESC>:w<CR>a
 
 " Disable escape key in insert mode, <nop>(no operation)
 inoremap jk <esc>
 
 nnoremap <leader>q :q<cr>
-inoremap <leader>w <esc>:w<cr>
+nnoremap <leader>w :w<cr>
 
 " Ctrl+d delete the current line in insert mode
 inoremap <c-d> <esc>ddi
@@ -173,6 +172,8 @@ autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 let NERDTreeWinSize=20
 
 " CtrlP
+let g:ctrlp_extensions = ['tag']
+
 let g:ctrlp_working_path_mode='ra' " c: the directory of the current file; r: the nearest ancestor that contains one of these directories or files:.git .hg .svn .bzr
 
 " Exclude files and directorys
@@ -190,6 +191,7 @@ let Tlist_File_Fold_Auto_Close=1
 set autochdir
 
 " TagBar
+set tags=./tags,tags;/
 let g:tagbar_width=20   " Set tagbar window width
 
 " Vim-airline
