@@ -49,6 +49,7 @@ Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-fugitive'
 
 Bundle 'Lokaltog/vim-easymotion'
+" write HTML code faster(inspired by zencodeing)
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " ColorScheme
@@ -63,21 +64,31 @@ Bundle 'tpope/vim-surround'
 
 Bundle 'junegunn/goyo.vim'
 
-Bundle 'plasticboy/vim-markdown'
+" Bundle 'plasticboy/vim-markdown'
+Bundle 'tpope/vim-markdown'
+
+"vimdeck depend on it
+Bundle 'SyntaxRange'
 
 "Enable filetype plugins
 filetype indent plugin on     " Enable loading the plugin files for specific file types
 
+" Brief help
+" :help BundleList              - list configured bundles
+" :help BundleInstall(!)        - install(update) bundles
+" :help BundleSearch(!) foo     - search for foo
+" :help BundleClean             - remove unused bundles
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader=','
+
 "Disable up、down、left、right
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
 nnoremap <right> <nop>
-
-let mapleader=','
 
 " Edit my vimrc file through <leader>ev default leader is \
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
@@ -100,9 +111,6 @@ inoremap jk <esc>
 
 nnoremap <leader>q :q<cr>
 nnoremap <leader>w :w<cr>
-
-" Ctrl+d delete the current line in insert mode
-inoremap <c-d> <esc>ddi
 
 " Set how many lines of history Vim has to remember
 set history=1000
@@ -145,7 +153,7 @@ set fileencodings=utf-8,gbk,gb2312
 " set guifont=*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vim GUI
+" => Vim UI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight the current line
 set cursorline
@@ -171,7 +179,7 @@ autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 " NERDTree
 let NERDTreeWinSize=20
 
-" CtrlP
+" ctrlP
 let g:ctrlp_extensions = ['tag']
 
 let g:ctrlp_working_path_mode='ra' " c: the directory of the current file; r: the nearest ancestor that contains one of these directories or files:.git .hg .svn .bzr
@@ -204,8 +212,8 @@ let g:airline_theme="molokai"
 
 " YouComepleteMe
 " Set YouCompleteMe trigger key 
-let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
 
 " Enable NeoComplCache
 " let g:neocomplcache_enable_at_startup=1
@@ -227,10 +235,16 @@ endfunction
 let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
 noremap <leader>g :Goyo<CR>
 
+" Sparkup
+" let g:sparkup = 'bundle/sparkup/sparkup.py'
+let g:sparkupExecuteMapping = '<c-x>'
+let g:sparkupNextMapping = '<c-e>'
+
 " Vim-markdown
 let g:vim_markdown_folding_disabled=1
 
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :TagbarToggle<CR>
+
 autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>  " ruby syntax gets checked on pressing <F9> key
