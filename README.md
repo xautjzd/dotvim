@@ -13,24 +13,30 @@ How to use?
 
 1. Clone my repository to your home directory.
 
+```
 	$git clone https://github.com/xautjzd/dotvim.git ~/.vim
+```
 
 2. Install [vundle](https://github.com/gmarik/Vundle.vim).
 
+```
 	$git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+```
 
 3. Create soft link to `vimrc`.
 
+```
 	$ln -s ~/.vim/vimrc ~/.vimrc
+```
 
 4. Install plugins via vundle.
 
 open vim, and run `:BundleInstall` to install the specified plugins in the `~/.vimrc` file.After completed,compile the YCM(YouCompleteMe) plugin.
 
+```
 	$cd ~/.vim/bundle/YouCompleteMe
 	$./install.sh ~/.vimrc
- ~/.vimrc
-
+```
 
 	
 
