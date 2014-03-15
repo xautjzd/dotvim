@@ -104,12 +104,13 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " inoremap " ""<Esc>i
 
 " To save, press <c-s>
-imap <c-s> <ESC>:w<CR>a
+" imap <c-s> <ESC>:w<CR>a
 
 " Disable escape key in insert mode, <nop>(no operation)
 inoremap jk <esc>
 
 nnoremap <leader>q :q<cr>
+nnoremap <leader>qq :q!<cr>
 nnoremap <leader>w :w<cr>
 
 " Set how many lines of history Vim has to remember
