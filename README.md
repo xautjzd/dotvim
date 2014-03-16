@@ -11,25 +11,25 @@ More details, please refer to my vimrc file.
 How to use?
 ---
 
-- Clone my repository to your home directory.
+- ### Clone my repository to your home directory.
 
 ```
 $git clone https://github.com/xautjzd/dotvim.git ~/.vim
 ```	
 
-- Install [vundle](https://github.com/gmarik/Vundle.vim).
+- ### Install [vundle](https://github.com/gmarik/Vundle.vim).
 
 ```
 $git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 ```
 
-- Create soft link to `vimrc`.
+- ### Create soft link to `vimrc`.
 
 ```
 $ln -s ~/.vim/vimrc ~/.vimrc
 ```
 
-- Install plugins via vundle.
+- ### Install plugins via vundle.
 
 open vim, and run `:BundleInstall` to install the specified plugins in the `~/.vimrc` file.After completed,compile the YCM(YouCompleteMe) plugin.Before compiling, you should have `cmake` and `python` installed.
 
@@ -51,7 +51,7 @@ Compile `YouCompleteMe` plugin:
 
 About more details,please refer to [YouCompleteMe](https://github.com/Valloric/YouCompleteMe). 
 
-- Install patched fonts
+- ### Install patched fonts
 
 For the nice looking powerline symbols to appear, you will need to install a patched font. Instructions can be found in the official powerline [documentation][1]. Prepatched fonts can be found in the [powerline-fonts][2] repository
 
