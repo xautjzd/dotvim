@@ -11,7 +11,7 @@ More details, please refer to my vimrc file.
 How to use?
 ---
 
-- ### Clone my repository to your home directory.
+### - Clone my repository to your home directory.
 
 ```
 $git clone https://github.com/xautjzd/dotvim.git ~/.vim
