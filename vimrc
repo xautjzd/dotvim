@@ -247,5 +247,8 @@ let g:vim_markdown_folding_disabled=1
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :TagbarToggle<CR>
+" Stop automatic indentation when copied from another application at insert
+" mode
+set pastetoggle=<F2>
 
 autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>  " ruby syntax gets checked on pressing <F9> key
