@@ -16,7 +16,6 @@ How to use?
 ```
 $git clone https://github.com/xautjzd/dotvim.git ~/.vim
 ```	
-**Notice:** `xautjzd` is my github name, please replace it with yours.
 
 ### 2. Install [Vundle](https://github.com/gmarik/Vundle.vim).
 
