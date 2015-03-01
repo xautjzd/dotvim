@@ -57,7 +57,7 @@ In order to display beautiful status bar([vim-airline](https://github.com/bling/
 
 **Notice:**After completed the installation, you have to set your terminal emulator font with one of the patched fonts.
 
-![Satus line](https://github.com/xautjzd/ProjectImages/tree/master/dotvim/status-bar.png)
+![Satus line](https://flic.kr/p/iRSNHU)
 
 ### 6. Install CTags
 
