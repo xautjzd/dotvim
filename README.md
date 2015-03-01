@@ -57,6 +57,8 @@ In order to display beautiful status bar([vim-airline](https://github.com/bling/
 
 **Notice:**After completed the installation, you have to set your terminal emulator font with one of the patched fonts.
 
+![Satus line](https://github.com/xautjzd/ProjectImages/tree/master/dotvim/status-bar.png)
+
 ### 6. Install CTags
 
 In order to jump between classes, methods and varibles quickly, you had better to install [Exuberant CTags](http://ctags.sourceforge.net/). Download the source code, extract and build install. Or on Ubuntu/Debian:
@@ -64,6 +66,8 @@ In order to jump between classes, methods and varibles quickly, you had better t
 	$sudo apt-get install exuberant-ctags
 
 *Usage:* enter into your project root path, and run `ctags -R`, you can also ignore some subdirectories with `ctags -R --languages=ruby --exclude=.git --exclude=log`.
+
+![](https://github.com/xautjzd/ProjectImages/tree/master/dotvim/ctags.png)
 
 [1]: https://powerline.readthedocs.org/en/latest/fontpatching.html
 [2]: https://github.com/Lokaltog/powerline-fonts
