@@ -16,68 +16,73 @@
 set nocompatible               "disable vi compatibility
 filetype off                   "required!
 
-set rtp+=~/.vim/bundle/vundle/  "set runtimepath
-call vundle#rc()
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
 
-" Let Vundle manage Vundle  
-Bundle 'gmarik/vundle'
+" Let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
 
 "File Tree plugin NERDTree
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
 
 "File switch from on to another
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 "snippets
-Bundle 'SirVer/ultisnips'
-"Bundle 'vim-scripts/snipMate'
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
 
 " Auto complete plugin
-Bundle 'Valloric/YouCompleteMe'
-" Bundle 'Shougo/neocomplcache.vim'
-"Bundle 'SuperTab'
+Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Shougo/neocomplcache.vim'
 
 " Code comment and decomment
-Bundle 'tomtom/tcomment_vim'
+Plugin 'tomtom/tcomment_vim'
 
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
-" Static syntax checking
-Bundle 'scrooloose/syntastic'
+" Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-fugitive'
 
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-fugitive'
-
-Bundle 'Lokaltog/vim-easymotion'
+Plugin 'Lokaltog/vim-easymotion'
 " write HTML code faster(inspired by zencodeing)
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " ColorScheme
-Bundle 'tomasr/molokai'
+Plugin 'tomasr/molokai'
 
 "Airline
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 
 " Utility
-" Bundle 'repeat.vim'
-Bundle 'tpope/vim-surround'
+" Plugin 'repeat.vim'
+" Plugin 'tpope/vim-surround'
 
-Bundle 'junegunn/goyo.vim'
+Plugin 'junegunn/goyo.vim'
 
-" Bundle 'plasticboy/vim-markdown'
-Bundle 'tpope/vim-markdown'
+" Plugin 'plasticboy/vim-markdown'
+" Plugin 'tpope/vim-markdown'
 
 "vimdeck depend on it
-Bundle 'SyntaxRange'
+" Plugin 'SyntaxRange'
 
-"Enable filetype plugins
-filetype indent plugin on     " Enable loading the plugin files for specific file types
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required 
 
+"
 " Brief help
-" :help BundleList              - list configured bundles
-" :help BundleInstall(!)        - install(update) bundles
-" :help BundleSearch(!) foo     - search for foo
-" :help BundleClean             - remove unused bundles
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -139,6 +144,8 @@ autocmd BufRead,BufNewFile *.rb set tabstop=2  " If edit *.rb file,shiftwidth is
 
 " Set code folding method
 set foldmethod=syntax
+" Unfold when open file
+set foldlevelstart=99
 
 
 " When setting showcmd, the bottom line will show you information about the
@@ -170,6 +177,7 @@ set t_Co=256
 "Set the colortheme of vim
 colorscheme molokai
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -192,24 +200,20 @@ let g:ctrlp_custom_ignore = {
 			\ 'file': '\v\.(so|swap|tar|zip|jar|jpg|png|pdf|doc|docx|gz|bz2|rpm|deb)$',
 			\}
 
-
-" TagList
-let Tlist_Inc_Winwidth=0
-let Tlist_Process_File_Always=1
-let Tlist_File_Fold_Auto_Close=1
-set autochdir
-
 " TagBar
 set tags=./tags,tags;/
 let g:tagbar_width=20   " Set tagbar window width
 
 " Vim-airline
-" More airline-customization please refer to vim-airline doc:
-" https://github.com/bling/vim-airline
 let g:airline_powerline_fonts=1 " Let airline plugin use the arrow effect of powerline
-let g:airline_detect_whitespace=0 " *trailing[164] is part of the whitespace extension, disable it  
 "set vim statusbar theme
 let g:airline_theme="molokai"
+
+" Trigger configuration. Do not use <tab> if you use
+" https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " YouComepleteMe
 " Set YouCompleteMe trigger key 
@@ -218,11 +222,6 @@ let g:ycm_key_list_previous_completion = ['<Up>']
 
 " Enable NeoComplCache
 " let g:neocomplcache_enable_at_startup=1
-
-" Syntastic plugin
-" check header files for C
-let g:Syntastic_c_check_header = 1
-let syntastic_mode_map = { 'passive_filetypes': ['html'] } " don't check html
 
 " Goyo
 function! g:goyo_before()
@@ -238,11 +237,11 @@ noremap <leader>g :Goyo<CR>
 
 " Sparkup
 " let g:sparkup = 'bundle/sparkup/sparkup.py'
-let g:sparkupExecuteMapping = '<c-x>'
-let g:sparkupNextMapping = '<c-e>'
+" let g:sparkupExecuteMapping = '<c-x>'
+" let g:sparkupNextMapping = '<c-e>'
 
 " Vim-markdown
-let g:vim_markdown_folding_disabled=1
+" let g:vim_markdown_folding_disabled=1
 
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
@@ -251,4 +250,4 @@ nmap <F3> :TagbarToggle<CR>
 " mode
 set pastetoggle=<F2>
 
-autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>  " ruby syntax gets checked on pressing <F9> key
+" autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>  " ruby syntax gets checked on pressing <F9> key
