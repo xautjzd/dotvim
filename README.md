@@ -72,3 +72,5 @@ In order to jump between classes, methods and varibles quickly, you had better t
 [1]: https://powerline.readthedocs.org/en/latest/fontpatching.html
 [2]: https://github.com/Lokaltog/powerline-fonts
 
+**Remember:** It will maybe lose vim clolorscheme in tmux if you use vim in tmux. To fix it, you should force tmux to use 256 colors by adding the -2 flag, so I added `alias tmux="tmux -2"` to ~/.zshrc(if you use bash, add to ~/.bashrc)
+
