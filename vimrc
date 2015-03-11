@@ -160,6 +160,9 @@ set fileencoding=utf-8
 set fileencodings=utf-8,gbk,gb2312
 " set guifont=*
 
+" Set git commit message
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim UI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
