@@ -58,6 +58,14 @@ Plugin 'tomasr/molokai'
 "Airline
 Plugin 'bling/vim-airline'
 
+" Python
+Plugin 'davidhalter/jedi-vim'
+Plugin 'klen/python-mode'
+Plugin 'nvie/vim-flake8'
+
+" Vim-LaTex
+" Plugin 'lervag/vimtex'
+
 " Utility
 " Plugin 'repeat.vim'
 " Plugin 'tpope/vim-surround'
@@ -124,15 +132,18 @@ set history=1000
 "Display the line number
 set number
 
-set autoindent
-set smartindent   
 set autoread       " Reload files when changed
 
+set textwidth=79   " Lines longer than 79 columns will be broken
+
 " set ruler
-" set expandtab
+set autoindent     " Align the new line indent with the previous line
+set smartindent   
 set tabstop=4      " Set number of spaces that a <Tab> in the file counts for
+set softtabstop=4  " Insert/delete 4 spaces when hitting a TAB/BACKSPACE 
+set expandtab      " Insert spaces when hitting TABs
 set cindent
-set shiftwidth=4   " Set width of nested tabs,control  how many columns text is indented with the reindent operations(<<)
+set shiftwidth=4   " Operation >> indents 4 columns; << unindents 4 columns 
 
 " autocmd: specify commands to be executed automatically when reading or
 " writing a file, when entering or leaving a buffer or window
@@ -140,12 +151,16 @@ set shiftwidth=4   " Set width of nested tabs,control  how many columns text is 
 " http://learnvimscriptthehardway.stevelosh.com/chapters/12.html
 autocmd BufRead,BufNewFile *.rb set shiftwidth=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
 autocmd BufRead,BufNewFile *.rb set tabstop=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
+autocmd BufRead,BufNewFile *.rb set softtabstop=2
 " autocmd BufWritePre * :normal gg=G
 
 " Set code folding method
-set foldmethod=syntax
+set foldmethod=indent    " syntax
 " Unfold when open file
 set foldlevelstart=99
+" press space to fold/unfold code
+" nnoremap <space> za
+" vnoremap <space> zf
 
 
 " When setting showcmd, the bottom line will show you information about the
@@ -159,6 +174,10 @@ set fileencoding=utf-8
 "file encode list,when vim read file,it will detect according to this config
 set fileencodings=utf-8,gbk,gb2312
 " set guifont=*
+
+" enable copy vim content to another application.
+" vim --verision: must have xterm_clipboard support(install vim-gnome)
+set clipboard=unnamedplus
 
 " Set git commit message
 autocmd Filetype gitcommit setlocal spell textwidth=72
