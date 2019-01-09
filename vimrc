@@ -13,74 +13,53 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim Plugins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nocompatible               "disable vi compatibility
-filetype off                   "required!
+" Install vim-plug if we don't already have it
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
-" Let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" File switch from on to another
+Plug 'ctrlpvim/ctrlp.vim'
 
 "File Tree plugin NERDTree
-Plugin 'scrooloose/nerdtree'
-
-"File switch from on to another
-Plugin 'kien/ctrlp.vim'
-
-"snippets
-Plugin 'SirVer/ultisnips'
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'scrooloose/nerdtree'
 
 " Auto complete plugin
-Plugin 'Valloric/YouCompleteMe'
-" Plugin 'Shougo/neocomplcache.vim'
+Plug 'Valloric/YouCompleteMe'
+
+Plug 'jiangmiao/auto-pairs'
+
+"Snippets
+Plug 'SirVer/ultisnips'
+
+Plug 'majutsushi/tagbar'
 
 " Code comment and decomment
-Plugin 'tomtom/tcomment_vim'
+Plug 'tpope/vim-commentary'
 
-Plugin 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
-" Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-fugitive'
-
-Plugin 'Lokaltog/vim-easymotion'
-" write HTML code faster(inspired by zencodeing)
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Language
+Plug 'fatih/vim-go'
+" Python completion and tag navigation
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 " ColorScheme
-Plugin 'tomasr/molokai'
+Plug 'tomasr/molokai'
 
-"Airline
-Plugin 'bling/vim-airline'
+" Status Bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-" Python
-Plugin 'davidhalter/jedi-vim'
-Plugin 'klen/python-mode'
-Plugin 'nvie/vim-flake8'
-
-" Vim-LaTex
-" Plugin 'lervag/vimtex'
-
-" Utility
-" Plugin 'repeat.vim'
-" Plugin 'tpope/vim-surround'
-
-Plugin 'junegunn/goyo.vim'
-
-" Plugin 'plasticboy/vim-markdown'
-" Plugin 'tpope/vim-markdown'
-
-"vimdeck depend on it
-" Plugin 'SyntaxRange'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required 
+" Initialize plugin system
+call plug#end()            " required
 
 "
 " Brief help
@@ -125,6 +104,9 @@ inoremap jk <esc>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>qq :q!<cr>
 nnoremap <leader>w :w<cr>
+
+" 解决插入模式下delete/backspce键失效问题
+set backspace=2
 
 " Set how many lines of history Vim has to remember
 set history=1000
@@ -177,7 +159,7 @@ set fileencodings=utf-8,gbk,gb2312
 
 " enable copy vim content to another application.
 " vim --verision: must have xterm_clipboard support(install vim-gnome)
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 
 " Set git commit message
 autocmd Filetype gitcommit setlocal spell textwidth=72
@@ -198,6 +180,7 @@ set t_Co=256
 
 "Set the colortheme of vim
 colorscheme molokai
+syntax on
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -208,7 +191,7 @@ colorscheme molokai
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 
 " NERDTree
-let NERDTreeWinSize=20
+let NERDTreeWinSize=40
 
 " ctrlP
 let g:ctrlp_extensions = ['tag']
@@ -227,7 +210,7 @@ set tags=./tags,tags;/
 let g:tagbar_width=20   " Set tagbar window width
 
 " Vim-airline
-let g:airline_powerline_fonts=1 " Let airline plugin use the arrow effect of powerline
+" let g:airline_powerline_fonts=1 " Let airline plugin use the arrow effect of powerline
 "set vim statusbar theme
 let g:airline_theme="molokai"
 
@@ -239,37 +222,15 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " YouComepleteMe
 " Set YouCompleteMe trigger key 
-let g:ycm_key_list_select_completion = ['<Down>']
-let g:ycm_key_list_previous_completion = ['<Up>']
-
-" Enable NeoComplCache
-" let g:neocomplcache_enable_at_startup=1
-
-" Goyo
-function! g:goyo_before()
-	silent !tmux set status off
-endfunction
-
-function! g:goyo_after()
-	silent !tmux set status on
-endfunction
-
-let g:goyo_callbacks = [function('g:goyo_before'), function('g:goyo_after')]
-noremap <leader>g :Goyo<CR>
-
-" Sparkup
-" let g:sparkup = 'bundle/sparkup/sparkup.py'
-" let g:sparkupExecuteMapping = '<c-x>'
-" let g:sparkupNextMapping = '<c-e>'
-
-" Vim-markdown
-" let g:vim_markdown_folding_disabled=1
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
 nmap <F3> :TagbarToggle<CR>
 " Stop automatic indentation when copied from another application at insert
 " mode
-set pastetoggle=<F2>
-
-" autocmd FileType ruby map <F9> :w<CR>:!ruby -c %<CR>  " ruby syntax gets checked on pressing <F9> key
+" set pastetoggle=<F2>
