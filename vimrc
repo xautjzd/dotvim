@@ -46,8 +46,10 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+Plug 'vim-syntastic/syntastic'
+
 " Language
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Python completion and tag navigation
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
@@ -227,6 +229,16 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ycm_complete_in_comments = 1
+
+" Syntax check
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Languages
+let g:go_fmt_command = "goimports"
 
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
