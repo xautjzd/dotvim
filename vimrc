@@ -25,13 +25,14 @@ call plug#begin('~/.vim/plugged')
 "call vundle#begin('~/some/path/here')
 
 " File switch from on to another
-Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 "File Tree plugin NERDTree
 Plug 'scrooloose/nerdtree'
 
 " Auto complete plugin
-Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 
 Plug 'jiangmiao/auto-pairs'
 
@@ -113,12 +114,14 @@ set backspace=2
 " Set how many lines of history Vim has to remember
 set history=1000
 
+set mouse=a
+
 "Display the line number
 set number
 
 set autoread       " Reload files when changed
 
-set textwidth=79   " Lines longer than 79 columns will be broken
+" set textwidth=120   " Lines longer than 120 columns will be broken
 
 " set ruler
 set autoindent     " Align the new line indent with the previous line
@@ -184,6 +187,7 @@ set t_Co=256
 colorscheme molokai
 syntax on
 
+hi CursorLine cterm=NONE ctermbg=brown ctermfg=white guibg=darkmagenta guifg=white
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
@@ -194,18 +198,6 @@ autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 
 " NERDTree
 let NERDTreeWinSize=40
-
-" ctrlP
-let g:ctrlp_extensions = ['tag']
-
-let g:ctrlp_working_path_mode='ra' " c: the directory of the current file; r: the nearest ancestor that contains one of these directories or files:.git .hg .svn .bzr
-
-" Exclude files and directorys
-" unlet g:ctrlp_custom_ignore
-let g:ctrlp_custom_ignore = {
-			\ 'dir': '\v[\/](\.git|\.hg|\.svn)$',
-			\ 'file': '\v\.(so|swap|tar|zip|jar|jpg|png|pdf|doc|docx|gz|bz2|rpm|deb)$',
-			\}
 
 " TagBar
 set tags=./tags,tags;/
@@ -222,15 +214,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" YouComepleteMe
-" Set YouCompleteMe trigger key 
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:ycm_complete_in_comments = 1
-
 " Syntax check
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -246,3 +229,8 @@ nmap <F3> :TagbarToggle<CR>
 " Stop automatic indentation when copied from another application at insert
 " mode
 " set pastetoggle=<F2>
+
+" <leader>fm 搜索最近使用过的文件
+nnoremap <leader>fm :Leaderf mru<CR>
+" <leader>fc 搜索历史命令
+nnoremap <leader>fc :Leaderf cmdHistory<CR>
