@@ -107,6 +107,8 @@ inoremap jk <esc>
 nnoremap <leader>q :q<cr>
 nnoremap <leader>qq :q!<cr>
 nnoremap <leader>w :w<cr>
+" Moving to matching braces, refer: https://vim.fandom.com/wiki/Moving_to_matching_braces
+nnoremap % v%
 
 " 解决插入模式下delete/backspce键失效问题
 set backspace=2
@@ -220,6 +222,12 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" automatic checks for filetypes in the active_filetypes when in passive mode
+let g:syntastic_mode_map = {
+        \ "mode": "passive",
+        \ "active_filetypes": ["go", "c"],
+        \ "passive_filetypes": ["puppet"] }
+
 " Languages
 let g:go_fmt_command = "goimports"
 
@@ -234,3 +242,32 @@ nmap <F3> :TagbarToggle<CR>
 nnoremap <leader>fm :Leaderf mru<CR>
 " <leader>fc 搜索历史命令
 nnoremap <leader>fc :Leaderf cmdHistory<CR>
+
+" Install gotags: https://github.com/jstemmer/gotags
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'm:methods',
+		\ 'r:constructor',
+		\ 'f:functions'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : 'gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
