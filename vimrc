@@ -21,25 +21,26 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" File switch from on to another
 " Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+
+" Plug 'junegunn/fzf.vim'
+" Install rg first, https://github.com/BurntSushi/ripgrep https://hackercodex.com/guide/vim-search-find-in-project/
+Plug 'mileszs/ack.vim'
 
 "File Tree plugin NERDTree
 Plug 'scrooloose/nerdtree'
 
 " Auto complete plugin
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'jiangmiao/auto-pairs'
 
 "Snippets
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 
-Plug 'majutsushi/tagbar'
+" Plug 'majutsushi/tagbar'
 
 " Code comment and decomment
 Plug 'tpope/vim-commentary'
@@ -47,12 +48,15 @@ Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'vim-syntastic/syntastic'
-
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Python completion and tag navigation
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
+Plug 'vim-syntastic/syntastic'
+
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 
 " ColorScheme
 Plug 'tomasr/molokai'
@@ -63,16 +67,6 @@ Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()            " required
-
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -97,9 +91,6 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 " inoremap ( ()<Esc>i
 " inoremap ' ''<Esc>i
 " inoremap " ""<Esc>i
-
-" To save, press <c-s>
-" imap <c-s> <ESC>:w<CR>a
 
 " Disable escape key in insert mode, <nop>(no operation)
 inoremap jk <esc>
@@ -142,6 +133,8 @@ autocmd BufRead,BufNewFile *.rb set shiftwidth=2  " If edit *.rb file,shiftwidth
 autocmd BufRead,BufNewFile *.rb set tabstop=2  " If edit *.rb file,shiftwidth is 2; otherwise, it's 4
 autocmd BufRead,BufNewFile *.rb set softtabstop=2
 " autocmd BufWritePre * :normal gg=G
+" Set git commit message
+autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " Set code folding method
 set foldmethod=indent    " syntax
@@ -162,14 +155,10 @@ set encoding=utf-8
 set fileencoding=utf-8
 "file encode list,when vim read file,it will detect according to this config
 set fileencodings=utf-8,gbk,gb2312
-" set guifont=*
+set guifont=*
 
-" enable copy vim content to another application.
-" vim --verision: must have xterm_clipboard support(install vim-gnome)
-" set clipboard=unnamedplus
-
-" Set git commit message
-autocmd Filetype gitcommit setlocal spell textwidth=72
+" enable copy vim content to another application. 
+set clipboard=unnamed " set clipboard=unnamedplus
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim UI
@@ -195,9 +184,6 @@ hi CursorLine cterm=NONE ctermbg=brown ctermfg=white guibg=darkmagenta guifg=whi
 " => Vim plugin config
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" UltiSnips
-autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
-
 " NERDTree
 let NERDTreeWinSize=40
 
@@ -210,26 +196,25 @@ let g:tagbar_width=20   " Set tagbar window width
 "set vim statusbar theme
 let g:airline_theme="molokai"
 
-" Trigger configuration. Do not use <tab> if you use
-" https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " Syntax check
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+ let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
+ let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+
 " automatic checks for filetypes in the active_filetypes when in passive mode
 let g:syntastic_mode_map = {
         \ "mode": "passive",
-        \ "active_filetypes": ["go", "c"],
+        \ "active_filetypes": ["c"],
         \ "passive_filetypes": ["puppet"] }
 
 " Languages
 let g:go_fmt_command = "goimports"
+let g:go_auto_type_info = 0
+let g:go_auto_sameids = 0
 
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
@@ -243,31 +228,26 @@ nnoremap <leader>fm :Leaderf mru<CR>
 " <leader>fc 搜索历史命令
 nnoremap <leader>fc :Leaderf cmdHistory<CR>
 
-" Install gotags: https://github.com/jstemmer/gotags
-let g:tagbar_type_go = {
-	\ 'ctagstype' : 'go',
-	\ 'kinds'     : [
-		\ 'p:package',
-		\ 'i:imports:1',
-		\ 'c:constants',
-		\ 'v:variables',
-		\ 't:types',
-		\ 'n:interfaces',
-		\ 'w:fields',
-		\ 'e:embedded',
-		\ 'm:methods',
-		\ 'r:constructor',
-		\ 'f:functions'
-	\ ],
-	\ 'sro' : '.',
-	\ 'kind2scope' : {
-		\ 't' : 'ctype',
-		\ 'n' : 'ntype'
-	\ },
-	\ 'scope2kind' : {
-		\ 'ctype' : 't',
-		\ 'ntype' : 'n'
-	\ },
-	\ 'ctagsbin'  : 'gotags',
-	\ 'ctagsargs' : '-sort -silent'
-\ }
+
+" Ack.vim Prefer rg > ag > ack
+if executable('rg')
+    let g:ackprg = 'rg -S --no-heading --vimgrep'
+elseif executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+endif
+" Backslash invokes ack.vim
+nnoremap \ :Ack<SPACE>
+
+" coc.vim
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
