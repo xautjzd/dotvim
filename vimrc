@@ -31,32 +31,27 @@ Plug 'mileszs/ack.vim'
 
 "File Tree plugin NERDTree
 Plug 'scrooloose/nerdtree'
-
-" Auto complete plugin
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-Plug 'jiangmiao/auto-pairs'
-
-"Snippets
-" Plug 'SirVer/ultisnips'
-
 " Plug 'majutsushi/tagbar'
 
+" refer: https://github.com/neoclide/coc-snippets
+Plug 'honza/vim-snippets'
+
+Plug 'jiangmiao/auto-pairs'
 " Code comment and decomment
 Plug 'tpope/vim-commentary'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" LSP client
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'dense-analysis/ale'
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Python completion and tag navigation
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 
 Plug 'vim-syntastic/syntastic'
-
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
 
 " ColorScheme
 Plug 'tomasr/molokai'
@@ -71,6 +66,10 @@ call plug#end()            " required
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""
+filetype on         " 开启文件类型侦测
+filetype plugin on  " 根据侦测到的不同类型加载对应的插件
+filetype indent on
+
 let mapleader=','
 
 "Disable up、down、left、right
@@ -160,25 +159,27 @@ set guifont=*
 " enable copy vim content to another application. 
 set clipboard=unnamed " set clipboard=unnamedplus
 
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim UI
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Highlight the current line
-set cursorline
+"Set the colortheme of vim
+colorscheme molokai
+syntax on           " 允许用指定语法高亮配色方案替换默认方案
 
-"Highlight the search result and incremental search
-set hlsearch
-set incsearch
-
+set hlsearch        " Highlight the search result
+set incsearch       " Realtime search
 " Status line config
 set laststatus=2  "Always show the status line
 set t_Co=256
 
-"Set the colortheme of vim
-colorscheme molokai
-syntax on
-
+set cursorline      " Highlight the current line
 hi CursorLine cterm=NONE ctermbg=brown ctermfg=white guibg=darkmagenta guifg=white
+
+match ErrorMsg '\%>80v.\+' " Highlight long lines over than 80 characters
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
