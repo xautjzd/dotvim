@@ -49,7 +49,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Python completion and tag navigation
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-syntastic/syntastic'
 
@@ -134,13 +134,15 @@ autocmd BufRead,BufNewFile *.rb set softtabstop=2
 " autocmd BufWritePre * :normal gg=G
 " Set git commit message
 autocmd Filetype gitcommit setlocal spell textwidth=72
+" petty format json, just type gg=G
+autocmd FileType json setlocal equalprg=python\ -m\ json.tool
 
 " Set code folding method
 set foldmethod=indent    " syntax
 " Unfold when open file
 set foldlevelstart=99
 " press space to fold/unfold code
-" nnoremap <space> za
+nnoremap <space> za
 " vnoremap <space> zf
 
 
@@ -193,19 +195,24 @@ set tags=./tags,tags;/
 let g:tagbar_width=20   " Set tagbar window width
 
 " Vim-airline
-" let g:airline_powerline_fonts=1 " Let airline plugin use the arrow effect of powerline
-"set vim statusbar theme
 let g:airline_theme="molokai"
 
 " Syntax check
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
- let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
- let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
+let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
 
+let g:syntastic_c_checkers = ['clang-check']
+let g:syntastic_c_check_header = 1
+let g:syntastic_c_compiler = 'clang'
 " automatic checks for filetypes in the active_filetypes when in passive mode
 let g:syntastic_mode_map = {
         \ "mode": "passive",
@@ -238,6 +245,9 @@ elseif executable('ag')
 endif
 " Backslash invokes ack.vim
 nnoremap \ :Ack<SPACE>
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " coc.vim
 inoremap <silent><expr> <TAB>
