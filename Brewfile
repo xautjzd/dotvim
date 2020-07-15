@@ -15,7 +15,7 @@ brew 'zsh'
 # macOS App Store
 mas "Octotree Pro", id: 1457450145
 mas "MindNode", id: 1289197285
-mas '1Blocker', id: 1107421413
+mas '1Blocker', id: 1018301773
 mas "Bear", id: 1091189122
 mas "ColorSlurp", id: 1287239339
 mas "Airmail", id: 918858936

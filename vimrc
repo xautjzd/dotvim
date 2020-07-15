@@ -53,6 +53,8 @@ Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-syntastic/syntastic'
 
+Plug 'editorconfig/editorconfig-vim'
+
 " ColorScheme
 Plug 'tomasr/molokai'
 
@@ -122,7 +124,7 @@ set tabstop=4      " Set number of spaces that a <Tab> in the file counts for
 set softtabstop=4  " Insert/delete 4 spaces when hitting a TAB/BACKSPACE 
 set expandtab      " Insert spaces when hitting TABs
 set cindent
-set shiftwidth=4   " Operation >> indents 4 columns; << unindents 4 columns 
+set shiftwidth=4   " Operation >> indents 4 columns; << unindents 4 columns
 
 " autocmd: specify commands to be executed automatically when reading or
 " writing a file, when entering or leaving a buffer or window
@@ -158,7 +160,7 @@ set fileencoding=utf-8
 set fileencodings=utf-8,gbk,gb2312
 set guifont=*
 
-" enable copy vim content to another application. 
+" enable copy vim content to another application.
 set clipboard=unnamed " set clipboard=unnamedplus
 
 set cmdheight=2
@@ -182,6 +184,9 @@ set cursorline      " Highlight the current line
 hi CursorLine cterm=NONE ctermbg=brown ctermfg=white guibg=darkmagenta guifg=white
 
 match ErrorMsg '\%>80v.\+' " Highlight long lines over than 80 characters
+
+set list
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,precedes:«,extends:»
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim plugin config
@@ -220,9 +225,9 @@ let g:syntastic_mode_map = {
         \ "passive_filetypes": ["puppet"] }
 
 " Languages
-let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 0
-let g:go_auto_sameids = 0
+" let g:go_fmt_command = "goimports"
+" let g:go_auto_type_info = 0
+" let g:go_auto_sameids = 0
 
 " Set shorcut key
 nmap <F2> :NERDTreeToggle<CR>
@@ -246,6 +251,7 @@ endif
 " Backslash invokes ack.vim
 nnoremap \ :Ack<SPACE>
 
+" https://github.com/golang/tools/blob/master/gopls/doc/vim.md
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
@@ -261,4 +267,4 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_next = '<C-u>'
