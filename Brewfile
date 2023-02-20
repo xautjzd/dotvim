@@ -19,6 +19,7 @@ brew 'hugo'
 
 # tools
 cask 'emacs'
+cask 'microsoft-edge'
 cask 'google-chrome'
 cask 'notion'
 cask 'alfred'
@@ -26,8 +27,10 @@ cask 'warp'
 cask 'intellij-idea-ce'
 cask 'sequel-pro'
 cask 'clashx'
-cask 'tunnelblick'
 cask 'docker'
+cask 'tunnelblick'
+
+cask 'spotify'
 
 # language
 # cask 'java'
