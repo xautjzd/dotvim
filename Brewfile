@@ -28,6 +28,7 @@ cask 'intellij-idea-ce'
 cask 'sequel-pro'
 cask 'clashx'
 cask 'docker'
+cask 'wireshark'
 cask 'tunnelblick'
 
 cask 'spotify'

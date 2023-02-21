@@ -985,6 +985,12 @@
         "options": {
           "full_name": "spotify"
         }
+      },
+      "wireshark": {
+        "version": "4.0.3",
+        "options": {
+          "full_name": "wireshark"
+        }
       }
     },
     "mas": {
