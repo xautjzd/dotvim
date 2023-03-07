@@ -1,7 +1,5 @@
 # taps
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 
 # packages
 brew 'vim'
@@ -22,7 +20,9 @@ cask 'emacs'
 cask 'microsoft-edge'
 cask 'google-chrome'
 cask 'notion'
-cask 'alfred'
+# replace alred
+cask 'raycast'
+# cask 'alfred'
 cask 'warp'
 cask 'intellij-idea-ce'
 cask 'sequel-pro'
