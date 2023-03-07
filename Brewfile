@@ -17,6 +17,8 @@ brew 'hugo'
 
 # tools
 cask 'emacs'
+# export org mode file to pdf
+cask 'mactex'
 cask 'microsoft-edge'
 cask 'google-chrome'
 cask 'notion'
