@@ -14,6 +14,7 @@ brew 'helix'
 brew 'jq'
 brew 'mas'
 brew 'hugo'
+brew 'multimarkdown'
 
 # tools
 cask 'emacs'
